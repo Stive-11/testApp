@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Mailing list</title>
+    <script src="content/js/angular.min.js"></script>
+    <link href="content/css/bootstrap.css" rel="stylesheet" />
+    <script src="controllers/senddatactrl.js"></script>
+    <script src="content/js/angular-route.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1>Mailing list</h1>
+            </div>
+        </div>
+
+
+        <form class="form-horizontal" id="dataForm" ng-controller="SendDataCtrl" ng-submit="send()" >
+            <div class="form-group row">
+                <label for="FirstName" class="col-sm-2 control-label">First name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="FirstName" placeholder="First name" ng-model="data.FirstName" required >
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="LasttName" class="col-sm-2 control-label">Last name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="LasttName" placeholder="Last name" ng-model="data.LastName" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Company" class="col-sm-2 control-label">Company</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Company" placeholder="Company" ng-model="data.Company" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="data.Email" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="isVIP" class="col-sm-2 control-label">VIP</label>
+                <div class="col-sm-1">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="Checkbox1" ng-model="data.VIP">
+                        <label class="col-sm-2 control-label"></label>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" >Save data</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
