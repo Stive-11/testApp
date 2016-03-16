@@ -7,6 +7,7 @@
     <link href="content/css/bootstrap.css" rel="stylesheet" />
     <script src="controllers/senddatactrl.js"></script>
     <script src="content/js/angular-route.min.js"></script>
+    <script src="content/js/angular-messages.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,32 +17,39 @@
             </div>
         </div>
 
-
-        <form class="form-horizontal" id="dataForm" ng-controller="SendDataCtrl" ng-submit="send()" >
+        <form class="form-horizontal" id="dataForm" ng-controller="SendDataCtrl" ng-submit="send()" name="dataform">
             <div class="form-group row">
                 <label for="FirstName" class="col-sm-2 control-label">First name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="FirstName" placeholder="First name" ng-model="data.FirstName" required >
+                    <input type="text" class="form-control" id="FirstName" placeholder="First name" ng-model="data.FirstName" required maxlength="50">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="LasttName" class="col-sm-2 control-label">Last name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="LasttName" placeholder="Last name" ng-model="data.LastName" required>
+                    <input type="text" class="form-control" id="LasttName" placeholder="Last name" ng-model="data.LastName" required maxlength="50">
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="Company" class="col-sm-2 control-label">Company</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="Company" placeholder="Company" ng-model="data.Company" required>
+                    <input name ="inputCompany" type="text" class="form-control" id="Company" placeholder="Company (only text)" ng-model="data.Company" required pattern="^[А-Яа-яЁё\sA-Za-z]+$" maxlength="50">
+                    <div ng-messages="dataform.inputCompany.$error">
+                        <div ng-message="pattern" class="text-danger">Should be some text</div>
+                        <div ng-message="maxlegth" class="text-danger">Should be less text</div>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="data.Email" required>
+                    <input name="inputEmail" type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="data.Email" required pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$">
+                    <div ng-messages="dataform.inputEmail.$error">
+                        <div ng-message="pattern" class="text-danger">Should be correct email</div>
+                    </div>
                 </div>
             </div>
 

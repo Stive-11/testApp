@@ -1,9 +1,9 @@
 ﻿
 var controllerId = 'SendDataCtrl';
 
-var mod = angular.module('app', []);
+var mod = angular.module('app', ['ngMessages']);
 mod.controller(controllerId, function ($scope, $http) {
-
+    
     var person = {
         FirstName: '',
         LastName: '',
@@ -13,6 +13,7 @@ mod.controller(controllerId, function ($scope, $http) {
     };
     $scope.data = person;
 
+    $scope.data.Company.$
 
     function sendPost() {
         var dataJson = JSON.stringify($scope.data);
@@ -28,8 +29,6 @@ mod.controller(controllerId, function ($scope, $http) {
 
     $scope.send = function () {
         sendPost();
-    };
-    function activate() {
     };
 
 })
