@@ -20,7 +20,6 @@ namespace testApp
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
-            
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -42,8 +41,8 @@ namespace testApp
             app.UseIISPlatformHandler();
 
             app.UseStaticFiles();
-
             app.UseMvc();
+
         }
 
         // Entry point for the application.

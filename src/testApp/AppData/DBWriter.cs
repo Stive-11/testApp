@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using testApp.Models;
@@ -12,9 +13,10 @@ namespace testApp.AppData
         private SqlConnection myConnection;
         public DBWriter()
         {
-            
-            var connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = j:\Projects\testApp\src\testApp\persons.mdf; " +  
-                                    @"Integrated Security = True; Connect Timeout = 30";
+           var dbFileName = Directory.GetParent(Directory.GetCurrentDirectory()) + @"\AppData\persons.mdf";
+
+            var connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = " + dbFileName +                                       
+                                    @" Integrated Security = True; Connect Timeout = 30";
             myConnection = new SqlConnection(connectionString);
         }
 
@@ -41,7 +43,7 @@ namespace testApp.AppData
         {
             SqlCommand myCommand = new SqlCommand();
             myCommand.Connection = myConnection;
-            var command = "INSERT INTO Person (FirstName, LastName, Company, Email, VIP) " +
+            var command = "INSERT INTO Person (FirstName, LastName, Company, Email, Vip) " +
                                     "Values (@firstname, @lastname, @company, @email, @vip)";
             myCommand.CommandText = command;
             myCommand.Parameters.AddWithValue("@firstname", person.FirstName);

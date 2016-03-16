@@ -10,52 +10,24 @@ using testApp.AppData;
 
 namespace testApp.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class PersonController : Controller
     {
         private DBWriter db = new DBWriter();
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            
-            Console.WriteLine(id);
-            return "value - "+ id;
-        }
-
-        // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] PersonInfo person)
+        public IActionResult Post([FromBody]PersonInfo request)
         {
-            //CreatePerson createPerson = new CreatePerson(jsonData);
-            //db.SavePerson(createPerson.GetPerson());
            
-            if (person == null)
+            if (request == null)
             {
                 return HttpBadRequest();
             }
             else {
-                db.SavePerson(person);
+                db.SavePerson(request);
                 return new EmptyResult(); }
             }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
